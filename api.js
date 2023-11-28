@@ -15,7 +15,7 @@ const getPost = async (event) => {
     try {
         const params = {
             TableName: process.env.DYNAMODB_TABLE_NAME,
-            Key: marshall({ postId: event.pathParamenters.postId }),
+            Key: marshall({ postId: event.pathParameters.postId }),
         };
 
         const { Item } = await db.send(new GetItemCommand(params));
@@ -80,7 +80,7 @@ const updatePost = async (event) => {
         const objKeys = Object.keys(body);
         const params = {
             TableName: process.env.DYNAMODB_TABLE_NAME,
-            Key: marshall({ postId: event.pathParamenters.postId }),
+            Key: marshall({ postId: event.pathParameters.postId }),
             UpdateExpression: `SET ${objKeys.map((_, index) => `#key${index} = :values{index}`).join(", ")}`,
             ExpressionAttributeNames: objKeys.reduce((acc, key, index) => ({
                 ...acc,
@@ -119,7 +119,7 @@ const deletePost = async (event) => {
     try {
         const params = {
             TableName: process.env.DYNAMODB_TABLE_NAME,
-            Key: marshall({ postId: event.pathParamenters.postId }),
+            Key: marshall({ postId: event.pathParameters.postId }),
         };
 
         const deleteResult = await db.send(new DeleteItemCommand(params));
