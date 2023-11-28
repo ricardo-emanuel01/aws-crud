@@ -1,6 +1,6 @@
 {
   "name": "aws-crud",
-  "packageManager": "yarn@3.6.3",
+  "packageManager": "yarn@1.22.21",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.460.0",
     "@aws-sdk/util-dynamodb": "^3.460.0",
